@@ -14,5 +14,7 @@ Refer to CrowdSec documentation for [registering a plugin][def].
 
 Refer to CrowdSec documentation for [writing a plugin][def2].
 
+Build using `go build -o bin/notification-file` command.
+
 [def]: https://docs.crowdsec.net/docs/notification_plugins/writing_your_own_plugin
 [def2]: https://docs.crowdsec.net/docs/notification_plugins/writing_your_own_plugin
