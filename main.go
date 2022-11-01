@@ -76,7 +76,7 @@ func (n *FilePlugin) Notify(ctx context.Context, notification *protobufs.Notific
 
 	logger.Info(fmt.Sprintf("Appended new alert: [%s] %s\n", notification.Name, notification.Text))
 
-	return nil, nil
+	return &protobufs.Empty{}, nil
 }
 
 func main() {
