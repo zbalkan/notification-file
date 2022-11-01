@@ -9,6 +9,9 @@ format: | # This template render all events as ndjson
     {{. | toJson -}}\\n
   {{ end -}}
 
+# group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
+# group_threshold: # if alerts exceed this, then the plugin will be sent the message. eg "10"
+
 log_path: "/tmp/crowdsec_alerts.json" #Use full path EG /tmp/crowdsec_alerts.json
 rotate:
   enabled: true # Change to false if you want to handle log rotate on system basis
