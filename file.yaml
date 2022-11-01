@@ -12,13 +12,13 @@ format: | # This template render all events as ndjson
 # group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
 # group_threshold: # if alerts exceed this, then the plugin will be sent the message. eg "10"
 
-log_path: "/tmp/crowdsec_alerts.json" #Use full path EG /tmp/crowdsec_alerts.json
+log_path: "/var/log/crowdsec_alerts.json" #Use full path EG /var/log/crowdsec_alerts.json or C:\ProgramData\CrowdSec\crowdsec_alerts.json
 rotate:
   enabled: true # Change to false if you want to handle log rotate on system basis
-	max_size: 500
-	max_files: 5
-	max_age: 5
-	compress: true
+  max_size: 500
+  max_files: 5
+  max_age: 5
+  compress: true
 log_format:
-  custom_format: "%msg%" # https://github.com/t-tomalak/logrus-easy-formatter
+  custom_format: '{ timestamp:"%time%",alert: %msg% }' # https://github.com/t-tomalak/logrus-easy-formatter
   custom_time_format: "2006-01-02 15:04:05" #"2006-01-02 15:04:05"
