@@ -17,6 +17,5 @@ rotate:
 	maxAge: 5
 	compress: true
 log_format:
-  custom_format: "" #"[%lvl%]: %time% - %msg%"
-  custom_time_format: "" #"2006-01-02 15:04:05"
-  formatter_name: "" #
+  custom_format: "[%lvl%]: %time% - %msg%" #"[%lvl%]: %time% - %msg%" # https://github.com/t-tomalak/logrus-easy-formatter
+  custom_time_format: "2006-01-02 15:04:05" #"2006-01-02 15:04:05"

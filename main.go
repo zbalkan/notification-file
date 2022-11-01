@@ -138,7 +138,7 @@ func (n *PluginConfig) SetDefaultLoggerConfig() error {
 	log.SetLevel(log.InfoLevel)
 	if n.LogFormat.CustomFormat != "" {
 		log.SetFormatter(&easy.Formatter{
-			TimestampFormat: "2006-01-02 15:04:05",
+			TimestampFormat: n.LogFormat.CustomTimeFormat,
 			LogFormat:       n.LogFormat.CustomFormat,
 		})
 	} else {
