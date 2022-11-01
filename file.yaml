@@ -1,0 +1,10 @@
+# Don't change this
+type: file
+
+name: file_default # this must match with the registered plugin in the profile
+log_level: info # Options include: trace, debug, info, warn, error, off
+
+format: | # This template receives list of models.Alert objects
+  CrowdSec detected an attack.
+
+log_path: "./alerts.json"
