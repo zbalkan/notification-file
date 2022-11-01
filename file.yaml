@@ -4,9 +4,9 @@ type: file
 name: file_default # this must match with the registered plugin in the profile
 log_level: info # Options include: trace, debug, info, warn, error, off
 
-format: | # This template receives list of models.Alert objects
-  {{range .}}
-    {{. | toJson -}}
+format: | # This template render all events as ndjson
+  {{range . -}}
+    {{. | toJson -}}\\n
   {{ end -}}
 
 log_path: "/tmp/crowdsec_alerts.json" #Use full path EG /tmp/crowdsec_alerts.json
@@ -17,5 +17,5 @@ rotate:
 	maxAge: 5
 	compress: true
 log_format:
-  custom_format: "[%lvl%]: %time% - %msg%" #"[%lvl%]: %time% - %msg%" # https://github.com/t-tomalak/logrus-easy-formatter
+  custom_format: "%msg%" # https://github.com/t-tomalak/logrus-easy-formatter
   custom_time_format: "2006-01-02 15:04:05" #"2006-01-02 15:04:05"
