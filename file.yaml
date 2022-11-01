@@ -6,7 +6,7 @@ log_level: info # Options include: trace, debug, info, warn, error, off
 
 format: | # This template render all events as ndjson
   {{range . -}}
-    {{. | toJson -}}\n
+    {{. | toJson }}
   {{ end -}}
 
 # group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
