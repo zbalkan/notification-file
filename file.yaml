@@ -7,7 +7,7 @@ log_level: info # Options include: trace, debug, info, warn, error, off
 # This template render all events as ndjson
 format: |
   {{range . -}}
-   { "time": "{{.StopAt}}", "alert": "{{. | toJson }}" }
+   { "time": "{{.StopAt}}", "alert": {{. | toJson }} }
   {{ end -}}
 
 # group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
@@ -23,4 +23,3 @@ rotate:
   compress: true
 log_format:
   custom_format: "%msg%" # https://github.com/t-tomalak/logrus-easy-formatter
-  custom_time_format: "2006-01-02 15:04:05.000" #"2006-01-02 15:04:05"
