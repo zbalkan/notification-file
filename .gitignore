@@ -35,3 +35,4 @@ msi
 *.msi
 **/*.nupkg
 *.tgz
+/bin

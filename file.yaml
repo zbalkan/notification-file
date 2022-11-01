@@ -20,5 +20,5 @@ rotate:
   max_age: 5
   compress: true
 log_format:
-  custom_format: '{ timestamp:"%time%",alert: %msg% }' # https://github.com/t-tomalak/logrus-easy-formatter
+  custom_format: '{ timestamp:"%time%", alert: %msg% }' # https://github.com/t-tomalak/logrus-easy-formatter
   custom_time_format: "2006-01-02 15:04:05" #"2006-01-02 15:04:05"
