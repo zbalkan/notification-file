@@ -4,9 +4,9 @@ type: file
 name: file_default # this must match with the registered plugin in the profile
 log_level: info # Options include: trace, debug, info, warn, error, off
 
-format: | # This template render all events as ndjson
+format: |
   {{range . -}}
-    {{. | toJson }}
+   { "time": "{{.StopAt}}", "alert": "{{. | toJson }}" }
   {{ end -}}
 
 # group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
@@ -20,5 +20,5 @@ rotate:
   max_age: 5
   compress: true
 log_format:
-  custom_format: '{ timestamp:"%time%", alert: %msg% }' # https://github.com/t-tomalak/logrus-easy-formatter
+  custom_format: "%msg%" # https://github.com/t-tomalak/logrus-easy-formatter
   custom_time_format: "2006-01-02 15:04:05.000" #"2006-01-02 15:04:05"
