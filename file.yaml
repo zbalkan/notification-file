@@ -7,7 +7,7 @@ log_level: info # Options include: trace, debug, info, warn, error, off
 # This template render all events as ndjson
 format: |
   {{range . -}}
-   { "time": "{{.StopAt}}", "alert": {{. | toJson }} }
+   { "time": "{{.StopAt}}", "program": "crowdsec", "alert": {{. | toJson }} }
   {{ end -}}
 
 # group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
