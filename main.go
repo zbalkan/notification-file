@@ -121,7 +121,10 @@ func (n *PluginConfig) SetDefaultLoggerConfig() error {
 	_, err := os.Stat(n.LogPath)
 	// create file if not exists, purposefully ignore errors
 	if os.IsNotExist(err) {
-		file, _ := os.OpenFile(n.LogPath, os.O_RDWR|os.O_CREATE, 0644)
+		file, err := os.OpenFile(n.LogPath, os.O_RDWR|os.O_CREATE, 0644)
+		if err != nil {
+			logger.Info(fmt.Sprintf("Error when creating %s: %s", n.LogPath, err.Error()))
+		}
 		file.Close()
 	}
 
