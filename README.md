@@ -14,6 +14,31 @@ The log format is `ndjson`.
 
 Refer to CrowdSec documentation for [registering a plugin][def].
 
+### Example: Collect CrowdSec alerts with Wazuh
+
+Create a group called `CrowdSec` and use the configuration below. Then add the servers, which CrowdSec is installed on, as a member to this group.
+
+```xml
+<agent_config>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/crowdsec_alerts.json</location>
+  </localfile>
+</agent_config>
+```
+
+Create a rule, give a it reasonable name and ID. Use the root rule below, then start adding more rules matching scenarios.
+
+```xml
+<group name="crowdsec,">
+  <rule id="99999" level="3">
+    <decoded_as>json</decoded_as>
+    <field name="program">crowdsec</field>
+    <description>Crowdsec: Messages grouped.</description>
+  </rule>
+ </group>
+```
+
 ## Development
 
 Refer to CrowdSec documentation for [writing a plugin][def2].
