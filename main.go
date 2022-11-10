@@ -55,7 +55,7 @@ func (n *FilePlugin) Configure(ctx context.Context, config *protobufs.Config) (*
 		return nil, err
 	}
 	if err := d.SetDefaultLoggerConfig(); err != nil {
-		logger.Info(fmt.Sprintf("Error happened %s", err.Error()))
+		logger.Error(fmt.Sprintf("Error happened %s", err.Error()))
 		return nil, err
 	}
 	n.ConfigByName[d.Name] = d
@@ -119,11 +119,11 @@ func (n *PluginConfig) SetDefaultLoggerConfig() error {
 	}
 	// check if file exists
 	_, err := os.Stat(n.LogPath)
-	// create file if not exists, purposefully ignore errors
+	// create file if not exists
 	if os.IsNotExist(err) {
 		file, err := os.OpenFile(n.LogPath, os.O_RDWR|os.O_CREATE, 0644)
 		if err != nil {
-			logger.Info(fmt.Sprintf("Error when creating %s: %s", n.LogPath, err.Error()))
+			logger.Error(fmt.Sprintf("Error when creating %s: %s", n.LogPath, err.Error()))
 		}
 		file.Close()
 	}
