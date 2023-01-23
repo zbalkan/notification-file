@@ -13,8 +13,8 @@ format: |
 # group_wait: # duration to wait collecting alerts before sending to this plugin, eg "30s"
 # group_threshold: # if alerts exceed this, then the plugin will be sent the message. eg "10"
 
-#Use full path EG /var/log/crowdsec_alerts.json or C:\ProgramData\CrowdSec\crowdsec_alerts.json
-log_path: "/var/log/crowdsec_alerts.json"
+#Use full path EG /tmp/crowdsec_alerts.json or %TEMP%\crowdsec_alerts.json
+log_path: "/tmp/crowdsec_alerts.json"
 rotate:
   enabled: true # Change to false if you want to handle log rotate on system basis
   max_size: 500
