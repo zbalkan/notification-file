@@ -52,13 +52,14 @@ func (n *FilePlugin) Configure(ctx context.Context, config *protobufs.Config) (*
 	logger.Info("Configured called")
 	d := PluginConfig{}
 	if err := yaml.Unmarshal(config.Config, &d); err != nil {
+		logger.Error(fmt.Sprintf("Error happened %s", err.Error()))
 		return nil, err
 	}
 	if err := d.SetDefaultLoggerConfig(); err != nil {
 		logger.Error(fmt.Sprintf("Error happened %s", err.Error()))
 		return nil, err
 	}
-	logger.Debug("Initiated notification file logger.")
+	logger.Info("Initiated notification file logger.")
 	notification_log.Info("PLUGIN STARTED.")
 	n.ConfigByName[d.Name] = d
 	return &protobufs.Empty{}, nil
@@ -119,16 +120,6 @@ func (n *PluginConfig) SetDefaultLoggerConfig() error {
 	if n.Rotate.Compress != nil {
 		_compress = *n.Rotate.Compress
 	}
-	// // check if file exists
-	// _, err := os.Stat(n.LogPath)
-	// // create file if not exists
-	// if os.IsNotExist(err) {
-	// 	file, err := os.OpenFile(n.LogPath, os.O_RDWR|os.O_CREATE, 0644)
-	// 	if err != nil {
-	// 		logger.Error(fmt.Sprintf("Error when creating %s: %s", n.LogPath, err.Error()))
-	// 	}
-	// 	file.Close()
-	// }
 
 	LogOutput := &lumberjack.Logger{
 		Filename: n.LogPath,
