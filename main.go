@@ -60,7 +60,7 @@ func (n *FilePlugin) Configure(ctx context.Context, config *protobufs.Config) (*
 		return nil, err
 	}
 	logger.Info("Initiated notification file logger.")
-	notification_log.Info("PLUGIN STARTED.")
+	notification_log.Info("{\"message\":\"PLUGIN STARTED\"}")
 	n.ConfigByName[d.Name] = d
 	return &protobufs.Empty{}, nil
 }
