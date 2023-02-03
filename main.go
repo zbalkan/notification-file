@@ -66,6 +66,8 @@ func (n *FilePlugin) Configure(ctx context.Context, config *protobufs.Config) (*
 }
 
 func (n *FilePlugin) Notify(ctx context.Context, notification *protobufs.Notification) (*protobufs.Empty, error) {
+	logger.Info("Notify called")
+
 	if _, ok := n.ConfigByName[notification.Name]; !ok {
 		return nil, fmt.Errorf("invalid plugin config name %s", notification.Name)
 	}
