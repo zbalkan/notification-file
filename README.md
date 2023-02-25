@@ -12,17 +12,17 @@ The log format is `ndjson`.
 
 ## Usage
 
-Refer to CrowdSec documentation for [registering a plugin][def].
+Refer to CrowdSec documentation for [registering a plugin][def1].
 
 ### Example: Collect CrowdSec alerts with Wazuh
 
-Create a group called `CrowdSec` and use the configuration below. Then add the servers, which CrowdSec is installed on, as a member to this group.
+Create a group called `CrowdSec` and use the configuration below. Then add the servers, on which CrowdSec is installed, as a member to this group.
 
 ```xml
 <agent_config>
   <localfile>
     <log_format>json</log_format>
-    <location>/var/log/crowdsec_alerts.json</location>
+    <location>/tmp/crowdsec_alerts.json</location>
   </localfile>
 </agent_config>
 ```
@@ -45,5 +45,5 @@ Refer to CrowdSec documentation for [writing a plugin][def2].
 
 Build using `go build -o bin/notification-file` command on Linux, `go build -o bin/notification-file.exe` on Windows.
 
-[def]: https://docs.crowdsec.net/docs/notification_plugins/intro#registering-plugin-to-profile
+[def1]: https://docs.crowdsec.net/docs/notification_plugins/intro#registering-plugin-to-profile
 [def2]: https://docs.crowdsec.net/docs/notification_plugins/writing_your_own_plugin
