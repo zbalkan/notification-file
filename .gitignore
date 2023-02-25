@@ -36,4 +36,3 @@ msi
 **/*.nupkg
 *.tgz
 /bin
-.github/
