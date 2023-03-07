@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/crowdsecurity/crowdsec v1.4.6
 	github.com/hashicorp/go-hclog v1.4.0
-	github.com/hashicorp/go-plugin v1.4.8
+	github.com/hashicorp/go-plugin v1.4.9
 	github.com/sirupsen/logrus v1.9.0
 	github.com/t-tomalak/logrus-easy-formatter v0.0.0-20190827215021-c074f06c5816
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
