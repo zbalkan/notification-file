@@ -1,6 +1,6 @@
 github.com/bufbuild/protocompile v0.4.0 h1:LbFKd2XowZvQ/kajzguUp2DC9UEIQhIq77fZZlaQsNA=
-github.com/crowdsecurity/crowdsec v1.5.4 h1:pHwkqyLdyMCJ/0AM71sAWbwgUMP5cgN3pwjy+iAKYDg=
-github.com/crowdsecurity/crowdsec v1.5.4/go.mod h1:PCiubBn1mthcc1S3leNpIS4yvykMTH/2X9z92HUeHes=
+github.com/crowdsecurity/crowdsec v1.5.5 h1:wzA0uvxZSAfvU6Q9mT7eGzkfMiIfVRZXG/Dto+hYnLA=
+github.com/crowdsecurity/crowdsec v1.5.5/go.mod h1:ozniSsSWu3EZIzmqS5hAftFBheH84dIdkqQqKKYGfZk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
