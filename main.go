@@ -8,7 +8,7 @@ import (
 	"github.com/crowdsecurity/crowdsec/pkg/protobufs"
 	"github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	log "github.com/sirupsen/logrus"
+	notification_log "github.com/sirupsen/logrus"
 	easy "github.com/t-tomalak/logrus-easy-formatter"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"gopkg.in/yaml.v2"
@@ -52,17 +52,22 @@ func (n *FilePlugin) Configure(ctx context.Context, config *protobufs.Config) (*
 	logger.Info("Configured called")
 	d := PluginConfig{}
 	if err := yaml.Unmarshal(config.Config, &d); err != nil {
+		logger.Error(fmt.Sprintf("Error happened %s", err.Error()))
 		return nil, err
 	}
 	if err := d.SetDefaultLoggerConfig(); err != nil {
 		logger.Error(fmt.Sprintf("Error happened %s", err.Error()))
 		return nil, err
 	}
+	logger.Info("Initiated notification file logger.")
+	notification_log.Info("{\"message\":\"PLUGIN STARTED\"}")
 	n.ConfigByName[d.Name] = d
 	return &protobufs.Empty{}, nil
 }
 
 func (n *FilePlugin) Notify(ctx context.Context, notification *protobufs.Notification) (*protobufs.Empty, error) {
+	logger.Info("Notify called")
+
 	if _, ok := n.ConfigByName[notification.Name]; !ok {
 		return nil, fmt.Errorf("invalid plugin config name %s", notification.Name)
 	}
@@ -72,7 +77,7 @@ func (n *FilePlugin) Notify(ctx context.Context, notification *protobufs.Notific
 	} else {
 		logger.SetLevel(hclog.Info)
 	}
-	log.Info(notification.Text)
+	notification_log.Info(notification.Text)
 
 	logger.Info(fmt.Sprintf("Appended new alert: [%s] %s\n", notification.Name, notification.Text))
 
@@ -117,16 +122,6 @@ func (n *PluginConfig) SetDefaultLoggerConfig() error {
 	if n.Rotate.Compress != nil {
 		_compress = *n.Rotate.Compress
 	}
-	// check if file exists
-	_, err := os.Stat(n.LogPath)
-	// create file if not exists
-	if os.IsNotExist(err) {
-		file, err := os.OpenFile(n.LogPath, os.O_RDWR|os.O_CREATE, 0644)
-		if err != nil {
-			logger.Error(fmt.Sprintf("Error when creating %s: %s", n.LogPath, err.Error()))
-		}
-		file.Close()
-	}
 
 	LogOutput := &lumberjack.Logger{
 		Filename: n.LogPath,
@@ -137,16 +132,16 @@ func (n *PluginConfig) SetDefaultLoggerConfig() error {
 		LogOutput.MaxSize = _maxage
 		LogOutput.Compress = _compress
 	}
-	log.SetOutput(LogOutput)
-	log.SetLevel(log.InfoLevel)
+	notification_log.SetOutput(LogOutput)
+	notification_log.SetLevel(notification_log.InfoLevel)
 	if n.LogFormat.CustomFormat != "" {
-		log.SetFormatter(&easy.Formatter{
+		notification_log.SetFormatter(&easy.Formatter{
 			TimestampFormat: n.LogFormat.CustomTimeFormat,
 			LogFormat:       n.LogFormat.CustomFormat,
 		})
 	} else {
-		logFormatter := &log.TextFormatter{TimestampFormat: n.LogFormat.CustomTimeFormat, FullTimestamp: true}
-		log.SetFormatter(logFormatter)
+		logFormatter := &notification_log.TextFormatter{TimestampFormat: n.LogFormat.CustomTimeFormat, FullTimestamp: true}
+		notification_log.SetFormatter(logFormatter)
 	}
 	return nil
 }
