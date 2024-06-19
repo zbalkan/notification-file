@@ -3,7 +3,7 @@ module notification-file
 go 1.19
 
 require (
-	github.com/crowdsecurity/crowdsec v1.5.5
+	github.com/crowdsecurity/crowdsec v1.6.0
 	github.com/hashicorp/go-hclog v1.6.2
 	github.com/hashicorp/go-plugin v1.6.0
 	github.com/sirupsen/logrus v1.9.3
